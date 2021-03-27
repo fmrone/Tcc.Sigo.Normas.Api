@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tcc.Sigo.Normas.Api", "Tcc.Sigo.Normas.Api\Tcc.Sigo.Normas.Api.csproj", "{FF136AE4-393D-4ECD-91AD-415FF79C8DC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tcc.Sigo.Normas.Api", "Tcc.Sigo.Normas.Api\Tcc.Sigo.Normas.Api.csproj", "{FF136AE4-393D-4ECD-91AD-415FF79C8DC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tcc.Sigo.Normas.Application", "Tcc.Sigo.Normas.Application\Tcc.Sigo.Normas.Application.csproj", "{4DDFB17E-FE88-442C-9A23-080771E7C0EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tcc.Sigo.Normas.Application", "Tcc.Sigo.Normas.Application\Tcc.Sigo.Normas.Application.csproj", "{4DDFB17E-FE88-442C-9A23-080771E7C0EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tcc.Sigo.Normas.Domain", "Tcc.Sigo.Normas.Domain\Tcc.Sigo.Normas.Domain.csproj", "{FB1529CA-07C8-42B8-83A7-84C16C6E5339}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tcc.Sigo.Normas.Domain", "Tcc.Sigo.Normas.Domain\Tcc.Sigo.Normas.Domain.csproj", "{FB1529CA-07C8-42B8-83A7-84C16C6E5339}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tcc.Sigo.Normas.Repository", "Tcc.Sigo.Normas.Repository\Tcc.Sigo.Normas.Repository.csproj", "{F20D5AA1-A686-470F-BAD1-8F7C43463D52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tcc.Sigo.Normas.Repository", "Tcc.Sigo.Normas.Repository\Tcc.Sigo.Normas.Repository.csproj", "{F20D5AA1-A686-470F-BAD1-8F7C43463D52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tcc.Sigo.Normas.MomAdapter", "Tcc.Sigo.Normas.MomAdapter\Tcc.Sigo.Normas.MomAdapter.csproj", "{5043341C-054C-4BC0-AE94-A8771EF23E7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tcc.Sigo.Normas.MomAdapter", "Tcc.Sigo.Normas.MomAdapter\Tcc.Sigo.Normas.MomAdapter.csproj", "{5043341C-054C-4BC0-AE94-A8771EF23E7B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Api", "1. Api", "{32F7FC37-570B-4E42-9E34-920D1D6C4D57}"
 EndProject
@@ -19,7 +19,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Core", "2. Core", "{17A5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Infra", "3. Infra", "{5CD1583E-F44F-44EB-93A5-7545F153CE17}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Test", "4. Test", "{BD7BF3D5-7311-465B-AA47-429B26757591}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Test", "5. Test", "{BD7BF3D5-7311-465B-AA47-429B26757591}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.  Cross Cutting", "4.  Cross Cutting", "{3BDA89DA-00A5-4F28-90AC-289C5AC59D55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tcc.Sigo.Normas.CrossCutting", "Tcc.Sigo.Normas.CrossCutting\Tcc.Sigo.Normas.CrossCutting.csproj", "{EF0649E3-2CC5-4AFA-98AB-94C040B40030}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +51,10 @@ Global
 		{5043341C-054C-4BC0-AE94-A8771EF23E7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5043341C-054C-4BC0-AE94-A8771EF23E7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5043341C-054C-4BC0-AE94-A8771EF23E7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF0649E3-2CC5-4AFA-98AB-94C040B40030}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF0649E3-2CC5-4AFA-98AB-94C040B40030}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF0649E3-2CC5-4AFA-98AB-94C040B40030}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF0649E3-2CC5-4AFA-98AB-94C040B40030}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +65,7 @@ Global
 		{FB1529CA-07C8-42B8-83A7-84C16C6E5339} = {17A50033-E478-4857-B390-540EC3710BF0}
 		{F20D5AA1-A686-470F-BAD1-8F7C43463D52} = {5CD1583E-F44F-44EB-93A5-7545F153CE17}
 		{5043341C-054C-4BC0-AE94-A8771EF23E7B} = {5CD1583E-F44F-44EB-93A5-7545F153CE17}
+		{EF0649E3-2CC5-4AFA-98AB-94C040B40030} = {3BDA89DA-00A5-4F28-90AC-289C5AC59D55}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D3A75391-B085-4849-A07F-BC7F80A3F920}

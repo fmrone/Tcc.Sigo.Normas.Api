@@ -4,4 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Tcc.Sigo.Normas.Domain\Tcc.Sigo.Normas.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

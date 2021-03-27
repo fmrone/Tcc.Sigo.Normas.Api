@@ -1,3 +1,6 @@
+using AutoMapper;
+using System.Reflection;
+using System.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +13,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
+using Tcc.Sigo.Normas.CrossCutting.IoC;
+using Tcc.Sigo.Normas.CrossCutting.Assemblies;
 
 namespace Tcc.Sigo.Normas.Api
 {
@@ -26,6 +32,22 @@ namespace Tcc.Sigo.Normas.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddLogging();
+
+            services.AddAutoMapper(AssemblyUtil.GetCurrentAssemblies());
+
+            services.AddDependencyResolver();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "API Normas",
+                    Description = "Microserviço para gerenciamento do domínio de Normas"
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +57,16 @@ namespace Tcc.Sigo.Normas.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UsePathBase("/Tcc.Sigo.Normas.Api");
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/Tcc.Sigo.Normas.Api/swagger/v1/swagger.json", "Tcc.Sigo.Normas.Api V1");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseHttpsRedirection();
 

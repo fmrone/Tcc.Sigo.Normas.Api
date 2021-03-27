@@ -8,10 +8,13 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Tcc.Sigo.Normas.CrossCutting\Tcc.Sigo.Normas.CrossCutting.csproj" />
     <ProjectReference Include="..\Tcc.Sigo.Normas.Domain\Tcc.Sigo.Normas.Domain.csproj" />
   </ItemGroup>
 

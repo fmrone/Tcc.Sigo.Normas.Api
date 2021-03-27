@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tcc.Sigo.Normas.Domain.Models;
@@ -41,9 +42,18 @@ namespace Tcc.Sigo.Normas.Repository.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<NormaModel> ObterPor(Guid Id)
+        public async Task<NormaModel> ObterPor(Guid id)
         {
-            throw new NotImplementedException();
+            var parametros = new DynamicParameters();
+            parametros.Add("id", id);
+
+            var query = @"SELECT Id, Codigo, Descricao, Area, Status, CadastradoEm, EmVigorDesde, EmVigorAte, OrgaoLegal
+                            FROM Norma 
+                           WHERE Id = @id";
+
+            var norma = await _dbSession.Connection.QueryAsync<NormaModel>(query, parametros, _dbSession.Transaction);
+
+            return norma.SingleOrDefault();
         }
 
         public Task<IEnumerable<NormaModel>> ObterPor(byte area)

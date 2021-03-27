@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tcc.Sigo.Normas.Application\Tcc.Sigo.Normas.Application.csproj" />
+    <ProjectReference Include="..\Tcc.Sigo.Normas.Domain\Tcc.Sigo.Normas.Domain.csproj" />
+    <ProjectReference Include="..\Tcc.Sigo.Normas.MomAdapter\Tcc.Sigo.Normas.MomAdapter.csproj" />
+    <ProjectReference Include="..\Tcc.Sigo.Normas.Repository\Tcc.Sigo.Normas.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -9,9 +10,9 @@ namespace Tcc.Sigo.Normas.Repository
         public IDbConnection Connection { get; }
         public IDbTransaction Transaction { get; set; }
 
-        public DbSession()
+        public DbSession(IConfiguration configuration)
         {
-            Connection = new SqlConnection(Settings.ConnectionString);
+            Connection = new SqlConnection(configuration.GetConnectionString("NormasConnection"));
             Connection.Open();
         }
 
