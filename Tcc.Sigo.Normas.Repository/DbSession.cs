@@ -11,7 +11,7 @@ namespace Tcc.Sigo.Normas.Repository
 
         public DbSession()
         {
-            Connection = new SqlConnection("");
+            Connection = new SqlConnection(Settings.ConnectionString);
             Connection.Open();
         }
 
