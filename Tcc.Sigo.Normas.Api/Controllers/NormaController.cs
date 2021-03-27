@@ -15,7 +15,7 @@ namespace Tcc.Sigo.Normas.Api.Controllers
 {
     [Route("normas")]
     [ApiController]
-    public class NormaController : ControllerBase
+    public class NormaController : ApiControllerBase
     {
         private readonly ILogger<NormaController> _logger;
         private readonly IMapper _mapper;

@@ -1,21 +1,11 @@
-using AutoMapper;
-using System.Reflection;
-using System.IO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using Tcc.Sigo.Normas.CrossCutting.IoC;
 using Tcc.Sigo.Normas.CrossCutting.Assemblies;
+using Tcc.Sigo.Normas.CrossCutting.IoC;
 
 namespace Tcc.Sigo.Normas.Api
 {
