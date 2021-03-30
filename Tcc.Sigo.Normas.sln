@@ -23,7 +23,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Test", "5. Test", "{BD7B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.  Cross Cutting", "4.  Cross Cutting", "{3BDA89DA-00A5-4F28-90AC-289C5AC59D55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tcc.Sigo.Normas.CrossCutting", "Tcc.Sigo.Normas.CrossCutting\Tcc.Sigo.Normas.CrossCutting.csproj", "{EF0649E3-2CC5-4AFA-98AB-94C040B40030}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tcc.Sigo.Normas.CrossCutting", "Tcc.Sigo.Normas.CrossCutting\Tcc.Sigo.Normas.CrossCutting.csproj", "{EF0649E3-2CC5-4AFA-98AB-94C040B40030}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F8658B63-12B5-4358-8A8A-11672FCC0B0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{EF0649E3-2CC5-4AFA-98AB-94C040B40030}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF0649E3-2CC5-4AFA-98AB-94C040B40030}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF0649E3-2CC5-4AFA-98AB-94C040B40030}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8658B63-12B5-4358-8A8A-11672FCC0B0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8658B63-12B5-4358-8A8A-11672FCC0B0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8658B63-12B5-4358-8A8A-11672FCC0B0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8658B63-12B5-4358-8A8A-11672FCC0B0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +72,7 @@ Global
 		{F20D5AA1-A686-470F-BAD1-8F7C43463D52} = {5CD1583E-F44F-44EB-93A5-7545F153CE17}
 		{5043341C-054C-4BC0-AE94-A8771EF23E7B} = {5CD1583E-F44F-44EB-93A5-7545F153CE17}
 		{EF0649E3-2CC5-4AFA-98AB-94C040B40030} = {3BDA89DA-00A5-4F28-90AC-289C5AC59D55}
+		{F8658B63-12B5-4358-8A8A-11672FCC0B0D} = {32F7FC37-570B-4E42-9E34-920D1D6C4D57}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D3A75391-B085-4849-A07F-BC7F80A3F920}
