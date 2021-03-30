@@ -25,7 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.  Cross Cutting", "4.  Cr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tcc.Sigo.Normas.CrossCutting", "Tcc.Sigo.Normas.CrossCutting\Tcc.Sigo.Normas.CrossCutting.csproj", "{EF0649E3-2CC5-4AFA-98AB-94C040B40030}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F8658B63-12B5-4358-8A8A-11672FCC0B0D}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "..\docker-compose.dcproj", "{F8658B63-12B5-4358-8A8A-11672FCC0B0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

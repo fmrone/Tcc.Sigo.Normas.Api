@@ -5,7 +5,7 @@ services:
     image: tcc-sigo-normas-api
     build:
       context: .
-      dockerfile: Tcc.Sigo.Normas.Api/Dockerfile
+      dockerfile: Dockerfile
     environment:
       TZ: America/Sao_Paulo
       ASPNETCORE_ENVIRONMENT: Production
