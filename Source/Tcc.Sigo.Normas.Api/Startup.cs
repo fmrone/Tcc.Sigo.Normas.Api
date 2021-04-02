@@ -35,7 +35,7 @@ namespace Tcc.Sigo.Normas.Api
                 {
                     Version = "v1",
                     Title = "API Normas",
-                    Description = "Microserviço para gerenciamento do domínio de Normas"
+                    Description = "TCC - Arq. Sistemas Distribuidos - Frederico Ribeiro"
                 });
             });
         }
