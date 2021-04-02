@@ -27,7 +27,7 @@ jobs:
     runs-on: unbunt-latest
     
     steps:
-	    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: Docker Login - Azure Container Registry
 	      uses: Azure/docker-login@v1
