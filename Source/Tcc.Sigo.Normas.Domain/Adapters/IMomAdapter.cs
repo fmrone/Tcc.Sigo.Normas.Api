@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Tcc.Sigo.Normas.Domain.Models;
 
 namespace Tcc.Sigo.Normas.Domain.Adapters
 {
@@ -11,6 +12,6 @@ namespace Tcc.Sigo.Normas.Domain.Adapters
         /// Publicar mensaagem
         /// </summary>
         /// <returns></returns>
-        Task Publicar();
+        Task Publicar(NormaModel normaModel);
     }
 }

@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Tcc.Sigo.Normas.Domain\Tcc.Sigo.Normas.Domain.csproj" />
+    <ProjectReference Include="..\Tcc.Sigo.Normas.Repository\Tcc.Sigo.Normas.Repository.csproj" />
   </ItemGroup>
 
 </Project>

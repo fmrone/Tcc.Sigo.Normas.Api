@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Tcc.Sigo.Normas.Api.Dtos;
 using Tcc.Sigo.Normas.Api.Models;
+using Tcc.Sigo.Normas.Domain.Entities;
 using Tcc.Sigo.Normas.Domain.Models;
 using Tcc.Sigo.Normas.Domain.Services;
 
@@ -50,6 +52,17 @@ namespace Tcc.Sigo.Normas.Api.Controllers
             return Ok(_mapper.Map<NormaModel, NormaGet>(normaModel));
         }
 
+        [HttpPost]
+        [ProducesResponseType(typeof(NormaPost), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Post([FromBody][Required] NormaPost normaPost)
+        {
+            var normaEntity = _mapper.Map<NormaPost, NormaEntity>(normaPost);
+            await _normaService.Inserir(normaEntity);
 
+            return Created("", "");
+        }
     }
 }

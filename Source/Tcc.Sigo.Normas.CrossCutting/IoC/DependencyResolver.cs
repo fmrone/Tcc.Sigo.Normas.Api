@@ -21,8 +21,6 @@ namespace Tcc.Sigo.Normas.CrossCutting.IoC
             RegisterServices(services);
             RegisterAdapters(services);
             RegisterRepositories(services);
-
-            
         }
 
         private static void RegisterServices(IServiceCollection services)
@@ -33,7 +31,7 @@ namespace Tcc.Sigo.Normas.CrossCutting.IoC
 
         private static void RegisterAdapters(IServiceCollection services)
         {
-            services.AddScoped<IMomAdapter, RabbitMQMomAdapter>();
+            services.AddScoped<IMomAdapter, AzureServiceBusMomAdapter>();
         }
 
         private static void RegisterRepositories(IServiceCollection services)
