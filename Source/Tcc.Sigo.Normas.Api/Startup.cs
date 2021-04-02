@@ -35,7 +35,7 @@ namespace Tcc.Sigo.Normas.Api
                 {
                     Version = "v1",
                     Title = "API Normas",
-                    Description = "TCC - Arq. Sistemas Distribuidos - Frederico Ribeiro"
+                    Description = "TCC - Arq. Sistemas Distribuidos - Frederico Ribeiro - TESTE GIT ACTIONS"
                 });
             });
         }
