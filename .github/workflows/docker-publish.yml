@@ -24,7 +24,7 @@ jobs:
     # Ensure test job passes before pushing image.
     needs: test
     
-    runs-on: unbunt-latest
+    runs-on: ubuntu-latest
     
     steps:
       - uses: actions/checkout@v2
