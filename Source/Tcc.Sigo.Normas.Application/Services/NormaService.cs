@@ -1,13 +1,16 @@
 ﻿using AutoMapper;
+using Flunt.Notifications;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Tcc.Sigo.Normas.Domain.Adapters;
 using Tcc.Sigo.Normas.Domain.Entities;
+using Tcc.Sigo.Normas.Domain.Enumerators;
+using Tcc.Sigo.Normas.Domain.Messages;
 using Tcc.Sigo.Normas.Domain.Models;
 using Tcc.Sigo.Normas.Domain.Repositories;
+using Tcc.Sigo.Normas.Domain.Results;
 using Tcc.Sigo.Normas.Domain.Services;
 using Tcc.Sigo.Normas.Repository;
 
@@ -37,33 +40,127 @@ namespace Tcc.Sigo.Normas.Application.Services
             _momAdapter = momAdapter;
         }
 
+        public async Task<Result<NormaEntity>> Alterar(NormaEntity normaEntity)
+        {
+            if (normaEntity.Invalid)
+                return Result<NormaEntity>.Error(normaEntity.Notifications);
+
+            var normaModel = _mapper.Map<NormaEntity, NormaModel>(normaEntity);
+            var normaMessage = _mapper.Map<NormaModel, NormaMessage>(normaModel);
+
+            _unitOfWork.BeginTransaction();
+
+            try
+            {
+                await _normaWriteOnlyRepository.Alterar(normaModel);
+                    
+                normaMessage.Operacao = (byte)EOperacao.Alterar;
+
+                await _momAdapter.Publicar(normaMessage);
+
+                _unitOfWork.Commit();
+            }
+            catch (Exception ex)
+            {
+                _unitOfWork.Rollback();
+
+                _logger.LogError(ex.Message);
+
+                var notifications = new List<Notification>
+                {
+                    new Notification("Exception", ex.Message)
+                };
+
+                return Result<NormaEntity>.Error(notifications);
+            }
+
+            return Result<NormaEntity>.Ok(normaEntity);
+        }
+
+        public async Task<Result> AtivarInativar(Guid id, bool status)
+        {
+            _unitOfWork.BeginTransaction();
+
+            try
+            {
+                await _normaWriteOnlyRepository.AtivarInativar(id, status);
+
+                await _momAdapter.Publicar(
+                    new NormaMessage 
+                    { 
+                        Id = id, 
+                        Status = status, 
+                        Operacao = (byte)EOperacao.AtivarInativar 
+                    });
+
+                _unitOfWork.Commit();
+
+                return Result.Ok();
+            }
+            catch (Exception ex)
+            {
+                _unitOfWork.Rollback();
+
+                _logger.LogError(ex.Message);
+
+                var notifications = new List<Notification>
+                {
+                    new Notification("Exception", ex.Message)
+                };
+
+                return Result.Error(notifications);
+            }
+        }
+
+        public async Task<Result<NormaEntity>> Inserir(NormaEntity normaEntity) 
+        {
+            if (normaEntity.Invalid)
+                return Result<NormaEntity>.Error(normaEntity.Notifications);
+
+            var normaModel = _mapper.Map<NormaEntity, NormaModel>(normaEntity);
+            var normaMessage = _mapper.Map<NormaModel, NormaMessage>(normaModel);
+            _unitOfWork.BeginTransaction();
+
+            try
+            {
+                await _normaWriteOnlyRepository.Incluir(normaModel);
+
+                normaMessage.Operacao = (byte)EOperacao.Inserir;
+
+                await _momAdapter.Publicar(normaMessage);
+
+                _unitOfWork.Commit();
+            }
+            catch (Exception ex)
+            {
+                _unitOfWork.Rollback();
+
+                _logger.LogError(ex.Message);
+
+                var notifications = new List<Notification>
+                {
+                    new Notification("Exception", ex.Message)
+                };
+
+                return Result<NormaEntity>.Error(notifications);
+            }
+
+            return Result<NormaEntity>.Ok(normaEntity);
+        }
+
+        public async Task<IEnumerable<NormaModel>> ObterPor(byte area)
+        {
+            return await _normaReadOnlyRepository.ObterPor(area);
+        }
+
         public async Task<NormaModel> ObterPor(Guid id)
         {
             return await _normaReadOnlyRepository.ObterPor(id);
         }
 
-        public async Task Inserir(NormaEntity normaEntity) 
+        public async Task<IEnumerable<NormaModel>> Obter()
         {
-            if (normaEntity.Valid)
-            {
-                var normaModel = _mapper.Map<NormaEntity, NormaModel>(normaEntity);
-
-                _unitOfWork.BeginTransaction();
-
-                try
-                {
-                    await _normaWriteOnlyRepository.Incluir(normaModel);
-                    await _momAdapter.Publicar(normaModel);
-
-                    _unitOfWork.Commit();
-                }
-                catch (Exception ex)
-                {
-                    _unitOfWork.Rollback();
-
-                    _logger.LogError(ex.Message);
-                }
-            }
+            return await _normaReadOnlyRepository.Obter();
         }
     }
 }

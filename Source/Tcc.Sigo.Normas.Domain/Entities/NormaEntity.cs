@@ -63,7 +63,6 @@ namespace Tcc.Sigo.Normas.Domain.Entities
             string codigo,
             string descricao,
             byte area,
-            bool status,
             DateTime emVigorDesde,
             DateTime? emVigorAte,
             string orgaoLegal)
@@ -72,7 +71,6 @@ namespace Tcc.Sigo.Normas.Domain.Entities
             Codigo = codigo;
             Descricao = descricao;
             Area = area;
-            Status = status;
             EmVigorDesde = emVigorDesde;
             EmVigorAte = emVigorAte;
             OrgaoLegal = orgaoLegal;

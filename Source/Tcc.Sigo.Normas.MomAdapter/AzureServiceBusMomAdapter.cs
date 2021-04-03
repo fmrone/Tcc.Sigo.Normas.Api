@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Tcc.Sigo.Normas.Domain.Adapters;
+using Tcc.Sigo.Normas.Domain.Messages;
 using Tcc.Sigo.Normas.Domain.Models;
 
 
@@ -27,9 +28,9 @@ namespace Tcc.Sigo.Normas.MomAdapter
               QUEUE_NAME);
         }
 
-        public async Task Publicar(NormaModel normaModel)
+        public async Task Publicar(NormaMessage normaMessage)
         {
-            string data = JsonConvert.SerializeObject(normaModel);
+            string data = JsonConvert.SerializeObject(normaMessage);
             Message message = new Message(Encoding.UTF8.GetBytes(data));
 
             await _queueClient.SendAsync(message);
@@ -47,7 +48,7 @@ namespace Tcc.Sigo.Normas.MomAdapter
         private async Task ProcessMessageHandler(Message message, CancellationToken cancellationToken)
         {
             var messageString = Encoding.UTF8.GetString(message.Body);
-            var normaModel = JsonConvert.DeserializeObject<NormaModel>(messageString);
+            var normaMessage = JsonConvert.DeserializeObject<NormaModel>(messageString);
 
             // chama o legado
 

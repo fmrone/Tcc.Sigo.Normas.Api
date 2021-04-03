@@ -15,7 +15,11 @@ namespace Tcc.Sigo.Normas.Api.Mappers
         /// </summary>
         public DtoToEntityMappingProfile() 
         {
-            CreateMap<NormaPost, NormaEntity>();
+            CreateMap<NormaPost, NormaEntity>()
+                .ConstructUsing(c => new NormaEntity(c.Codigo, c.Descricao, c.Area, c.EmVigorDesde, c.EmVigorAte, c.OrgaoLegal));
+                
+            CreateMap<NormaPut, NormaEntity>()
+                .ConstructUsing(c => new NormaEntity(c.Id, c.Codigo, c.Descricao, c.Area, c.EmVigorDesde, c.EmVigorAte, c.OrgaoLegal));
         }
     }
 }
