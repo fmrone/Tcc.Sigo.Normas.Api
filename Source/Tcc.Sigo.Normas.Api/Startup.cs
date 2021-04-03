@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Tcc.Sigo.Normas.Application.BackgroudServices;
 using Tcc.Sigo.Normas.CrossCutting.Assemblies;
 using Tcc.Sigo.Normas.CrossCutting.IoC;
 
@@ -38,6 +39,10 @@ namespace Tcc.Sigo.Normas.Api
                     Description = "TCC - Arq. Sistemas Distribuidos - Frederico Ribeiro"
                 });
             });
+
+            services.AddHostedService<AzureServiceBusBackgroundService>();
+
+            services.AddSingleton<AzureServiceBusConsumer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

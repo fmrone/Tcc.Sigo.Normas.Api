@@ -13,5 +13,7 @@ namespace Tcc.Sigo.Normas.Domain.Adapters
         /// </summary>
         /// <returns></returns>
         Task Publicar(NormaModel normaModel);
+
+        Task Ler();
     }
 }

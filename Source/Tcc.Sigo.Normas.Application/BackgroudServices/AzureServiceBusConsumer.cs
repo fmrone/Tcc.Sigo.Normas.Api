@@ -1,4 +1,5 @@
-﻿using Microsoft.Azure.ServiceBus;
+﻿
+using Microsoft.Azure.ServiceBus;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
@@ -6,19 +7,17 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Tcc.Sigo.Normas.Domain.Adapters;
 using Tcc.Sigo.Normas.Domain.Models;
 
-
-namespace Tcc.Sigo.Normas.MomAdapter
+namespace Tcc.Sigo.Normas.Application.BackgroudServices
 {
-    public class AzureServiceBusMomAdapter : IMomAdapter
+    public class AzureServiceBusConsumer
     {
         private readonly IConfiguration _configuration;
         private readonly QueueClient _queueClient;
         private const string QUEUE_NAME = "tccsigonormas";
 
-        public AzureServiceBusMomAdapter(IConfiguration configuration) 
+        public AzureServiceBusConsumer(IConfiguration configuration) 
         {
             _configuration = configuration;
 
@@ -27,20 +26,7 @@ namespace Tcc.Sigo.Normas.MomAdapter
               QUEUE_NAME);
         }
 
-        public async Task Publicar(NormaModel normaModel)
-        {
-            string data = JsonConvert.SerializeObject(normaModel);
-            Message message = new Message(Encoding.UTF8.GetBytes(data));
-
-            await _queueClient.SendAsync(message);
-        }
-
-        public async Task Ler()
-        {
-            RegisterHandler();
-        }
-
-        private void RegisterHandler()
+        public void RegisterHandler()
         {
             var messageHandlerOptions = new MessageHandlerOptions(ExceptionHandler) { AutoComplete = false };
 
@@ -51,8 +37,7 @@ namespace Tcc.Sigo.Normas.MomAdapter
         {
             var messageString = Encoding.UTF8.GetString(message.Body);
             var normaModel = JsonConvert.DeserializeObject<NormaModel>(messageString);
-
-            Console.WriteLine(normaModel);
+            
 
             // chama o legado
 
