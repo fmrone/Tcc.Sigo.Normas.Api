@@ -33,14 +33,11 @@ namespace Tcc.Sigo.Normas.MomAdapter
             Message message = new Message(Encoding.UTF8.GetBytes(data));
 
             await _queueClient.SendAsync(message);
+
+            RegistrarConsumo();
         }
 
-        public async Task Ler()
-        {
-            RegisterHandler();
-        }
-
-        private void RegisterHandler()
+        private void RegistrarConsumo()
         {
             var messageHandlerOptions = new MessageHandlerOptions(ExceptionHandler) { AutoComplete = false };
 
@@ -51,8 +48,6 @@ namespace Tcc.Sigo.Normas.MomAdapter
         {
             var messageString = Encoding.UTF8.GetString(message.Body);
             var normaModel = JsonConvert.DeserializeObject<NormaModel>(messageString);
-
-            Console.WriteLine(normaModel);
 
             // chama o legado
 

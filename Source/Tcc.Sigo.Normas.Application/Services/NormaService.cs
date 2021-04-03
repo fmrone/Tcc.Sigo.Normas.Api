@@ -60,6 +60,8 @@ namespace Tcc.Sigo.Normas.Application.Services
                 catch (Exception ex)
                 {
                     _unitOfWork.Rollback();
+
+                    _logger.LogError(ex.Message);
                 }
             }
         }

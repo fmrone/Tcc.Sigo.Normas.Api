@@ -9,11 +9,6 @@ namespace Tcc.Sigo.Normas.MomAdapter
 {
     public class RabbitMQMomAdapter : IMomAdapter
     {
-        public Task Ler()
-        {
-            throw new NotImplementedException();
-        }
-
         public Task Publicar(NormaModel normaModel)
         {
             throw new NotImplementedException();

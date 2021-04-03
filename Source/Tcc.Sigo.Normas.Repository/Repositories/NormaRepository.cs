@@ -32,9 +32,27 @@ namespace Tcc.Sigo.Normas.Repository.Repositories
             throw new NotImplementedException();
         }
 
-        public Task Incluir(NormaModel norma)
+        public async Task Incluir(NormaModel norma)
         {
-            throw new NotImplementedException();
+            if (norma == null)
+                throw new ArgumentNullException(nameof(norma));
+
+            var parametros = new DynamicParameters();
+            parametros.Add("Id", norma.Id);
+            parametros.Add("Codigo", norma.Codigo);
+            parametros.Add("Descricao", norma.Descricao);
+            parametros.Add("Area", norma.Area);
+            parametros.Add("Status", norma.Status, DbType.Boolean);
+            parametros.Add("CadastradoEm", norma.CadastradoEm);
+            parametros.Add("EmVigorDesde", norma.EmVigorDesde);
+            parametros.Add("EmVigorAte", norma.EmVigorAte);
+            parametros.Add("OrgaoLegal", norma.OrgaoLegal);
+
+            var cmd = @"INSERT INTO Norma (Id, Codigo, Descricao, Area, Status, CadastradoEm, EmVigorDesde, EmVigorAte, OrgaoLegal) 
+                        VALUES (@Id, @Codigo, @Descricao, @Area, @Status, @CadastradoEm, @EmVigorDesde, @EmVigorAte, @OrgaoLegal)";
+
+
+            await _dbSession.Connection.ExecuteAsync(cmd, parametros, _dbSession.Transaction);
         }
 
         public Task<IEnumerable<NormaModel>> Obter()
