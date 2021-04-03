@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 using Tcc.Sigo.Normas.CrossCutting.Assemblies;
 using Tcc.Sigo.Normas.CrossCutting.IoC;
 
@@ -35,7 +36,7 @@ namespace Tcc.Sigo.Normas.Api
                 {
                     Version = "v1",
                     Title = "API Normas",
-                    Description = "TCC - Arq. Sistemas Distribuidos - Frederico Ribeiro"
+                    Description = "TCC - Arq. Sistemas Distribuidos - Frederico Ribeiro" + Environment.GetEnvironmentVariable("AzureServiceBusMomConnectionString")
                 });
             });
         }
