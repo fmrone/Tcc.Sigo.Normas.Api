@@ -87,9 +87,11 @@ namespace Tcc.Sigo.Normas.Api.Controllers
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Get(byte area)
         {
+            return NotFound("Normas não encontradas" + Environment.GetEnvironmentVariable("NormasConnection"));
+
             var normasModel = await _normaService.ObterPor(area);
             if (normasModel == null)
-                return NotFound("Normas não encontradas");
+                return NotFound("Normas não encontradas" + Environment.GetEnvironmentVariable("NormasConnection"));
 
             return Ok(_mapper.Map<IEnumerable<NormaModel>, IEnumerable<NormaGet>>(normasModel));
         }

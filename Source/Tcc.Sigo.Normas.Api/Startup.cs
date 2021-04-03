@@ -36,7 +36,7 @@ namespace Tcc.Sigo.Normas.Api
                 {
                     Version = "v1",
                     Title = "API Normas",
-                    Description = "TCC - Arq. Sistemas Distribuidos - Frederico Ribeiro" + Environment.GetEnvironmentVariable("DOCKER_REGISTRY_SERVER_URL")
+                    Description = "TCC - Arq. Sistemas Distribuidos - Frederico Ribeiro"
                 });
             });
         }
