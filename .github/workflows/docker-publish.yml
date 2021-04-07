@@ -5,15 +5,15 @@ on: [push]
 jobs:
   # Run tests.
   # See also https://docs.docker.com/docker-hub/builds/automated-testing/
-  test:
+  # test:
     
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
     
-    steps:
-      - uses: actions/checkout@v2
+    # steps:
+    #  - uses: actions/checkout@v2
 
-      - name: Run tests
-        run: dotnet test
+    #  - name: Run tests
+    #    run: dotnet test
         
     #    run: |
     #      if [ -f docker-compose.test.yml ]; then
@@ -25,7 +25,7 @@ jobs:
 
   build:
     # Ensure test job passes before pushing image.
-    needs: test
+    # needs: test
     
     runs-on: ubuntu-latest
     
