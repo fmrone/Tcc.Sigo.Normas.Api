@@ -18,6 +18,7 @@ COPY ["Source/Tcc.Sigo.Normas.Test/Tcc.Sigo.Normas.Test.csproj", "Tcc.Sigo.Norma
 
 COPY . ./
 RUN dotnet restore "Source/Tcc.Sigo.Normas.Api/Tcc.Sigo.Normas.Api.csproj"
+RUN dotnet test "Source/Tcc.Sigo.Normas.Test/Tcc.Sigo.Normas.Test.csproj"
 RUN dotnet publish "Source/Tcc.Sigo.Normas.Api" -c Release -o /app/publish 
 
 FROM base AS final
