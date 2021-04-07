@@ -30,8 +30,7 @@ namespace Tcc.Sigo.Normas.Test.Entities
                 emVigorAte,
                 orgaoLegal);
 
-            //Assert.True(normaEntity.Invalid);
-            Assert.True(normaEntity.Valid);
+            Assert.True(normaEntity.Invalid);
             Assert.True(normaEntity.Notifications.Any());
         }
     }
