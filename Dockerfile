@@ -14,6 +14,7 @@ COPY ["Source/Tcc.Sigo.Normas.Repository/Tcc.Sigo.Normas.Repository.csproj", "Tc
 COPY ["Source/Tcc.Sigo.Normas.Domain/Tcc.Sigo.Normas.Domain.csproj", "Tcc.Sigo.Normas.Domain/"]
 COPY ["Source/Tcc.Sigo.Normas.MomAdapter/Tcc.Sigo.Normas.MomAdapter.csproj", "Tcc.Sigo.Normas.MomAdapter/"]
 COPY ["Source/Tcc.Sigo.Normas.Application/Tcc.Sigo.Normas.Application.csproj", "Tcc.Sigo.Normas.Application/"]
+COPY ["Source/Tcc.Sigo.Normas.Test/Tcc.Sigo.Normas.Test.csproj", "Tcc.Sigo.Normas.Test/"]
 
 COPY . ./
 RUN dotnet restore "Source/Tcc.Sigo.Normas.Api/Tcc.Sigo.Normas.Api.csproj"

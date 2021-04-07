@@ -44,9 +44,11 @@ namespace Tcc.Sigo.Normas.Domain.Entities
 
             AdicionaContrato();
 
-            ValidaTamanhoCamposTexto();
+            if (Valid)
+                ValidaTamanhoCamposTexto();
 
-            ValidaDatas();
+            if (Valid)
+                ValidaDatas();
         }
 
         /// <summary>
@@ -77,9 +79,11 @@ namespace Tcc.Sigo.Normas.Domain.Entities
 
             AdicionaContrato();
 
-            ValidaTamanhoCamposTexto();
+            if (Valid)
+                ValidaTamanhoCamposTexto();
 
-            ValidaDatas();
+            if (Valid)
+                ValidaDatas();
         }
 
         private void AdicionaContrato()
