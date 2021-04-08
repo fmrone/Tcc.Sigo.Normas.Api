@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -43,8 +44,10 @@ namespace Tcc.Sigo.Normas.Api.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(NormaGet), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status500InternalServerError)]
+        [Authorize(Roles = "gestornormas")]
         public async Task<IActionResult> Get()
         {
             var normasModel = await _normaService.Obter();
@@ -63,8 +66,10 @@ namespace Tcc.Sigo.Normas.Api.Controllers
         [Route("{id}")]
         [ProducesResponseType(typeof(NormaGet), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status500InternalServerError)]
+        [Authorize(Roles = "gestornormas")]
         public async Task<IActionResult> Get(Guid id)
         {
             var normaModel = await _normaService.ObterPor(id);
@@ -83,12 +88,12 @@ namespace Tcc.Sigo.Normas.Api.Controllers
         [Route("area/{area}")]
         [ProducesResponseType(typeof(NormaGet), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status500InternalServerError)]
+        [Authorize(Roles = "gestornormas")]
         public async Task<IActionResult> Get(byte area)
         {
-            return NotFound("Normas não encontradas" + Environment.GetEnvironmentVariable("NormasConnection"));
-
             var normasModel = await _normaService.ObterPor(area);
             if (normasModel == null)
                 return NotFound("Normas não encontradas" + Environment.GetEnvironmentVariable("NormasConnection"));
@@ -104,8 +109,10 @@ namespace Tcc.Sigo.Normas.Api.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(NormaPost), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status500InternalServerError)]
+        [Authorize(Roles = "gestornormas")]
         public async Task<IActionResult> Post([FromBody][Required] NormaPost normaPost)
         {
             var normaEntity = _mapper.Map<NormaPost, NormaEntity>(normaPost);
@@ -124,8 +131,10 @@ namespace Tcc.Sigo.Normas.Api.Controllers
         [HttpPut]
         [ProducesResponseType(typeof(NormaPut), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status500InternalServerError)]
+        [Authorize(Roles = "gestornormas")]
         public async Task<IActionResult> Put([FromBody][Required] NormaPut normaPut)
         {
             var normaEntity = _mapper.Map<NormaPut, NormaEntity>(normaPut);
@@ -147,8 +156,10 @@ namespace Tcc.Sigo.Normas.Api.Controllers
         [Route("ativar-inativar/{id}/{status}")]
         [ProducesResponseType(typeof(NormaPut), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status500InternalServerError)]
+        [Authorize(Roles = "gestornormas")]
         public async Task<IActionResult> Patch(Guid id, bool status)
         {
             var result = await _normaService.AtivarInativar(id, status);

@@ -1,10 +1,12 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System;
+using System.Text;
 using Tcc.Sigo.Normas.CrossCutting.Assemblies;
 using Tcc.Sigo.Normas.CrossCutting.IoC;
 
@@ -23,6 +25,24 @@ namespace Tcc.Sigo.Normas.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            
+            var key = Encoding.ASCII.GetBytes(Settings.Secret);
+            services.AddAuthentication(a =>
+            {
+                a.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                a.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(b =>
+            {
+                b.RequireHttpsMetadata = false;
+                b.SaveToken = true;
+                b.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
 
             services.AddLogging();
 
@@ -37,6 +57,31 @@ namespace Tcc.Sigo.Normas.Api
                     Version = "v1",
                     Title = "API Normas",
                     Description = "TCC - Arq. Sistemas Distribuidos - Frederico Ribeiro"
+                });
+
+                c.AddSecurityDefinition(
+                    "Bearer",
+                    new OpenApiSecurityScheme()
+                    {
+                        In = ParameterLocation.Header,
+                        Description = "Digite: 'Bearer {token}', onde token é o token gerado na rota usuarios/autenticar",
+                        Name = "Authorization",
+                        Type = SecuritySchemeType.ApiKey
+                    });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] { }
+                    }
                 });
             });
         }
@@ -62,6 +107,8 @@ namespace Tcc.Sigo.Normas.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

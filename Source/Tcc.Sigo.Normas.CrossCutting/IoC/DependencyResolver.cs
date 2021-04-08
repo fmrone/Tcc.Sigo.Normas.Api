@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Text;
+using Tcc.Sigo.Normas.Application;
 using Tcc.Sigo.Normas.Application.Services;
 using Tcc.Sigo.Normas.Domain.Adapters;
 using Tcc.Sigo.Normas.Domain.Repositories;
@@ -26,7 +24,6 @@ namespace Tcc.Sigo.Normas.CrossCutting.IoC
         private static void RegisterServices(IServiceCollection services)
         {
             services.AddScoped<INormaService, NormaService>();
-            //services.AddScoped<IUser, User>();
         }
 
         private static void RegisterAdapters(IServiceCollection services)
