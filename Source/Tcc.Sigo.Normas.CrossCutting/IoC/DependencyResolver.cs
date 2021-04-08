@@ -6,6 +6,7 @@ using Tcc.Sigo.Normas.Domain.Adapters;
 using Tcc.Sigo.Normas.Domain.Repositories;
 using Tcc.Sigo.Normas.Domain.Services;
 using Tcc.Sigo.Normas.MomAdapter;
+using Tcc.Sigo.Normas.MomAdapter.Acl;
 using Tcc.Sigo.Normas.Repository;
 using Tcc.Sigo.Normas.Repository.Repositories;
 
@@ -28,6 +29,7 @@ namespace Tcc.Sigo.Normas.CrossCutting.IoC
 
         private static void RegisterAdapters(IServiceCollection services)
         {
+            services.AddScoped<IAclAdapter, AclAdapter>();
             services.AddScoped<IMomAdapter, AzureServiceBusMomAdapter>();
         }
 
