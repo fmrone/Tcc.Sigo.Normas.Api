@@ -10,7 +10,7 @@ namespace Tcc.Sigo.Normas.Test.Entities
     public class NormaTest
     {
         [Theory]
-        [InlineData("156456546546", "Norma 1", 0, "")]
+        [InlineData("156456546546S", "Norma 1", 0, "")]
         [InlineData(null, "Norma 1", 0, "")]
         [InlineData("1", null, 0, "")]
         [InlineData(null, null, 0, "")]
