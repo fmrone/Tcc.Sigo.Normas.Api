@@ -64,7 +64,7 @@ namespace Tcc.Sigo.Normas.Api
                     new OpenApiSecurityScheme()
                     {
                         In = ParameterLocation.Header,
-                        Description = "Digite: 'Bearer {token}', onde token é o token gerado na rota usuarios/autenticar",
+                        Description = "Digite: 'Bearer {token}'. Recupere ao autenticar seu acesso pela rota usuarios/autenticar",
                         Name = "Authorization",
                         Type = SecuritySchemeType.ApiKey
                     });
