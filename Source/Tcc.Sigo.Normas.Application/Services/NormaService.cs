@@ -83,17 +83,22 @@ namespace Tcc.Sigo.Normas.Application.Services
 
             try
             {
-                await _normaWriteOnlyRepository.AtivarInativar(id, status);
+                var normaExistente = await _normaReadOnlyRepository.ObterPor(id);
+                if (normaExistente != null)
+                {
+                    await _normaWriteOnlyRepository.AtivarInativar(id, status);
 
-                await _momAdapter.Publicar(
-                    new NormaMessage 
-                    { 
-                        Id = id, 
-                        Status = status, 
-                        Operacao = (byte)EOperacao.AtivarInativar 
-                    });
+                    await _momAdapter.Publicar(
+                        new NormaMessage
+                        {
+                            Id = id,
+                            Codigo = normaExistente.Codigo,
+                            Status = status,
+                            Operacao = (byte)EOperacao.AtivarInativar
+                        });
 
-                _unitOfWork.Commit();
+                    _unitOfWork.Commit();
+                }
 
                 return Result.Ok();
             }
