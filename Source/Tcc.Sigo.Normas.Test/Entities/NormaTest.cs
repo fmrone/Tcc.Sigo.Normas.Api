@@ -30,7 +30,10 @@ namespace Tcc.Sigo.Normas.Test.Entities
                 emVigorAte,
                 orgaoLegal);
 
-            Assert.True(normaEntity.Invalid);
+            //O teste foi construído para verificar se o cadastro da norma é inválido
+            //Para evidenciar a quebra do mesmo, foi alterado o assert, considerando que a norma inválida é válida
+            //O teste falha e o git Actions não enviará o commit para produção
+            Assert.True(normaEntity.Valid);
             Assert.True(normaEntity.Notifications.Any());
         }
     }
